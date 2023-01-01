@@ -178,12 +178,56 @@ module.hot.accept(reloadCSS);
 require("./styles.css");
 var onClickAdd = function onClickAdd() {
   var task = document.getElementById("task_add_txt").value;
-  var li = document.createElement('li');
-  console.log(li);
-  var div = document.createElement('div');
-  var pTag = document.createElement('p');
-  var compBtn = document.createElement('button');
-  var delBtn = document.createElement('button');
+  addTask(task);
+};
+var delInCompTask = function delInCompTask(target) {
+  document.getElementById("incomplete_list").removeChild(target);
+};
+var addTask = function addTask(text) {
+  var li = document.createElement("li");
+  li.className = "each_task_list";
+  var div = document.createElement("div");
+  div.className = "each_task_div";
+  var pTag = document.createElement("p");
+  pTag.className = "task_name";
+  pTag.innerText = text;
+  var compBtn = document.createElement("button");
+  compBtn.className = "btn_std";
+  compBtn.innerText = "完了";
+  compBtn.addEventListener("click", function () {
+    delInCompTask(compBtn.parentNode.parentNode);
+    var moveLi = compBtn.parentNode.parentNode;
+    var parent = compBtn.parentNode;
+    var compTask = parent.firstChild.innerHTML;
+    parent.innerHTML = "";
+    var movePTag = document.createElement("p");
+    movePTag.className = "task_name";
+    movePTag.innerText = compTask;
+    var reverseBtn = document.createElement("button");
+    reverseBtn.className = "btn_std";
+    reverseBtn.innerText = "戻す";
+    reverseBtn.addEventListener("click", function () {
+      var moveLi = reverseBtn.parentNode.parentNode;
+      var parent = reverseBtn.parentNode;
+      var inCompTask = parent.firstChild.innerHTML;
+      document.getElementById("complete_list").removeChild(moveLi);
+      addTask(inCompTask);
+    });
+    parent.appendChild(movePTag);
+    parent.appendChild(reverseBtn);
+    document.getElementById("complete_list").appendChild(moveLi);
+  });
+  var delBtn = document.createElement("button");
+  delBtn.className = "btn_std";
+  delBtn.innerText = "削除";
+  delBtn.addEventListener("click", function () {
+    delInCompTask(delBtn.parentNode.parentNode);
+  });
+  div.appendChild(pTag);
+  div.appendChild(compBtn);
+  div.appendChild(delBtn);
+  li.appendChild(div);
+  document.getElementById("incomplete_list").appendChild(li);
 };
 document.getElementById("task_add_btn").addEventListener("click", function () {
   return onClickAdd();
