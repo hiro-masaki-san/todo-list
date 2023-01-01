@@ -4,13 +4,13 @@ body {
 
 .btn_std {
   margin: 0px 5px;
-  padding: 0px 15px; 
+  padding: 0px 15px;
   border-radius: 4px;
 }
 
 .title {
   text-align: center;
-  font-weight:bold;
+  font-weight: bold;
   color: #666;
 }
 
@@ -27,7 +27,7 @@ body {
 }
 
 .incomplete_task_bg {
-  background-color: #c6ffe2 ;
+  background-color: #c6ffe2;
   min-height: 200px;
   border-radius: 8px;
 }
@@ -46,10 +46,9 @@ body {
   margin-bottom: 5px;
 }
 
-
-
 .task_name {
   margin: 1px;
 }
+
 
 /*# sourceMappingURL=/src.a2b27638.css.map */
